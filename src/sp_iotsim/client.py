@@ -37,7 +37,7 @@ async def main(port: int, addr: str, max_packets: int, log_file: Path = None):
     if log_file:
         log_file = Path(log_file).expanduser()
 
-    file = open("sensor-data.txt","a")
+    file = open("../2020-sensor-miniproject/sensor-data.txt","a")
 
 
 
