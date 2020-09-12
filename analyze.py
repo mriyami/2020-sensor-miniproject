@@ -52,12 +52,33 @@ if __name__ == "__main__":
 
     data = load_data(file)
 
+    #data["temperature"].plot()
+    #time = data["temperature"].index
+
+    #data["temperature"].hist()
+
+    #plt.figure()
+    #plt.hist(np.diff(time.values).astype(np.int64) // 1000000000)
+    #plt.xlabel("Time (seconds)")
+
+    print("Median temperature for each room")
+    print(data['temperature'].median())
+    print("Variance in temperature for each rooms")
+    print(data['temperature'].var())
+    #print("Median occupancy for each room\n" + data['occupancy'].median())
+    #print("Variance in occupancy for each rooms\n" + data['occupancy'].var() + "\n\n")
+
+
+
+
+
     for k in data:
-        # data[k].plot()
-        time = data[k].index
+        #data[k].plot()
+        #time = data[k].index
         data[k].hist()
-        plt.figure()
-        plt.hist(np.diff(time.values).astype(np.int64) // 1000000000)
-        plt.xlabel("Time (seconds)")
+        #plt.figure()
+        #plt.hist(np.diff(time.values).astype(np.int64) // 1000000000)
+        #plt.xlabel("Time (seconds)")
+
 
     plt.show()
