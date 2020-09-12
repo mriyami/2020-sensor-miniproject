@@ -37,9 +37,8 @@ async def main(port: int, addr: str, max_packets: int, log_file: Path = None):
     if log_file:
         log_file = Path(log_file).expanduser()
 
-    file = open("../2020-sensor-miniproject/sensor-data.txt","a")
 
-
+    file = log_file.open("a")
 
     uri = f"ws://{addr}:{port}"
 
@@ -59,6 +58,9 @@ async def main(port: int, addr: str, max_packets: int, log_file: Path = None):
             #saving the data to a file
             file.write(data + "\n")
             file.flush()
+
+
+
 
     file.close()
 
