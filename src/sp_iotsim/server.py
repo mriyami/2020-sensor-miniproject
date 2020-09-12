@@ -25,6 +25,7 @@ import argparse
 motd = b"x\x9csuvU\x08N\xcd\xcb\xcc/RpN,(.\xc9\xcfKU\xf0\xcc\x0fQ(\xce\xcc-\xcdI,\xc9/\x02\x00\xbe\xce\x0b\xe7"
 
 
+
 def get_simulated_rooms() -> T.Dict[str, T.Dict[str, float]]:
     """
     retrieves simulated room names and parameters
