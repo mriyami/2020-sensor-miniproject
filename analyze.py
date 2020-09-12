@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
+
 def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
 
     temperature = {}
