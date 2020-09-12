@@ -56,7 +56,6 @@ def generate_data(room: T.Dict[str, float]) -> T.Dict[str, T.Union[str, float]]:
         "co2": gamma.rvs(room["co"], size=1).tolist(),
     }
 
-
 async def iot_handler(websocket, path):
     """
     generate simulated data for each room and sensor

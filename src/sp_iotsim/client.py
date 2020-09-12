@@ -17,7 +17,6 @@ from pathlib import Path
 import argparse
 import asyncio
 
-
 async def main(port: int, addr: str, max_packets: int, log_file: Path = None):
     """
 
@@ -38,6 +37,10 @@ async def main(port: int, addr: str, max_packets: int, log_file: Path = None):
     if log_file:
         log_file = Path(log_file).expanduser()
 
+    file = open("testtext.txt","a")
+
+
+
     uri = f"ws://{addr}:{port}"
 
     async with websockets.connect(uri) as websocket:
@@ -53,7 +56,11 @@ async def main(port: int, addr: str, max_packets: int, log_file: Path = None):
                 pass
                 # print(f"{i} total messages received")
             print(data)
+            #saving the data to a file
+            file.write(data + "\n")
+            file.flush()
 
+    file.close()
 
 def cli():
     p = argparse.ArgumentParser(description="WebSocket client")
@@ -72,6 +79,7 @@ def cli():
         asyncio.run(main(P.port, P.host, P.max_packets, P.log))
     except KeyboardInterrupt:
         print(P.log)
+
 
 
 if __name__ == "__main__":
