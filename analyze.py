@@ -65,9 +65,14 @@ if __name__ == "__main__":
     #plt.xlabel("Time (seconds)")
 
     print("Median temperature for each room")
-    print(data['temperature'].median())
+    print("class1:   " , data['temperature']['class1'].median())
+    print("lab1:     " ,data['temperature']['lab1'].median())
+    print("office:   " ,data['temperature']['office'].median())
+    print()
     print("Variance in temperature for each rooms")
-    print(data['temperature'].var())
+    print("class1:   " ,data['temperature']['class1'].var())
+    print("lab1:     " ,data['temperature']['lab1'].var())
+    print("office:   " ,data['temperature']['office'].var())
     #print("Median occupancy for each room\n" + data['occupancy'].median())
     #print("Variance in occupancy for each rooms\n" + data['occupancy'].var() + "\n\n")
 
@@ -90,7 +95,7 @@ if __name__ == "__main__":
 #sns.kdeplot(np.array(data['temperature']['lab1']))
 #sns.displot(np.array(data['temperature']['lab1']),range = (-50,50), kde=True)
 #g = sns.FacetGrid(data['temperature'], col = 3)
-"""
+
 
 #Creat and plot PDF:
 fig1, axs = plt.subplots(1, 3,figsize=(9,6))
@@ -125,3 +130,4 @@ ax.set_xlabel('Time Interval')
 plt.tight_layout() 
 
 plt.show()
+"""
