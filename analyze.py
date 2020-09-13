@@ -17,8 +17,6 @@ import typing as T
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-from statistics import mean
-from statistics import variance
 
 
 def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
@@ -63,14 +61,13 @@ if __name__ == "__main__":
     #plt.figure()
     #plt.hist(np.diff(time.values).astype(np.int64) // 1000000000)
     #plt.xlabel("Time (seconds)")
-"""
+
     print("Median temperature for each room")
     print(data['temperature'].median())
     print("Variance in temperature for each rooms")
     print(data['temperature'].var())
     #print("Median occupancy for each room\n" + data['occupancy'].median())
     #print("Variance in occupancy for each rooms\n" + data['occupancy'].var() + "\n\n")
-"""
 """
     for k in data:
         data[k].plot()
@@ -91,7 +88,6 @@ if __name__ == "__main__":
 #sns.displot(np.array(data['temperature']['lab1']),range = (-50,50), kde=True)
 #g = sns.FacetGrid(data['temperature'], col = 3)
 """
-"""
 #Creat and plot PDF:
 fig, axs = plt.subplots(1, 3,figsize=(9,6))
 fig.suptitle('Propability Density', fontsize=16)
@@ -104,29 +100,6 @@ axs[0].set_xlabel('temperature')
 axs[1].set_xlabel('occupancy')
 axs[2].set_xlabel('co2')
 plt.tight_layout() 
-"""
-#print(data['temperature']['time'])
-#print(data['temperature'].time)
 
-print(pandas.Timedelta(data['temperature'].index.array[1] - data['temperature'].index.array[0]).seconds)
-#pandas.Timedelta(data['temperature'].index.array[1] - data['temperature'].index.array[0]).seconds
-#pandas.DataFrame.index(data['temperature']).array
-
-
-rows, col = data['temperature'].shape
-"""
-#range(rows-1)
-hold = pandas.Timedelta(data['temperature'].index.array[1] - data['temperature'].index.array[0]).seconds
-what = type(hold) is str
-print(what)
-"""
-delta = []
-for x in range(rows-1):
-    delta.append(pandas.Timedelta(data['temperature'].index.array[x+1] - data['temperature'].index.array[x]).total_seconds())
-
-print("Mean value of the time interval between two sensor readings is")
-print(mean(delta))
-print("Variance of the time interval is")
-print(variance(delta))
 
 plt.show()
