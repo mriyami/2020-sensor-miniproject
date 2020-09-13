@@ -63,14 +63,14 @@ if __name__ == "__main__":
     #plt.figure()
     #plt.hist(np.diff(time.values).astype(np.int64) // 1000000000)
     #plt.xlabel("Time (seconds)")
-"""
+
     print("Median temperature for each room")
     print(data['temperature'].median())
     print("Variance in temperature for each rooms")
     print(data['temperature'].var())
     #print("Median occupancy for each room\n" + data['occupancy'].median())
     #print("Variance in occupancy for each rooms\n" + data['occupancy'].var() + "\n\n")
-"""
+
 """
     for k in data:
         data[k].plot()
@@ -91,10 +91,10 @@ if __name__ == "__main__":
 #sns.displot(np.array(data['temperature']['lab1']),range = (-50,50), kde=True)
 #g = sns.FacetGrid(data['temperature'], col = 3)
 """
-"""
+
 #Creat and plot PDF:
-fig, axs = plt.subplots(1, 3,figsize=(9,6))
-fig.suptitle('Propability Density', fontsize=16)
+fig1, axs = plt.subplots(1, 3,figsize=(9,6))
+fig1.suptitle('Propability Density', fontsize=16)
 sns.histplot(np.array(data['temperature']['lab1']), stat = 'density', ax = axs[0], kde = True)
 sns.histplot(np.array(data['occupancy']['lab1']), stat = 'density', discrete = True, ax = axs[1], kde = True)
 sns.histplot(np.array(data['co2']['lab1']), stat = 'density', ax = axs[2], kde = True)
@@ -104,22 +104,10 @@ axs[0].set_xlabel('temperature')
 axs[1].set_xlabel('occupancy')
 axs[2].set_xlabel('co2')
 plt.tight_layout() 
-"""
-#print(data['temperature']['time'])
-#print(data['temperature'].time)
-
-print(pandas.Timedelta(data['temperature'].index.array[1] - data['temperature'].index.array[0]).seconds)
-#pandas.Timedelta(data['temperature'].index.array[1] - data['temperature'].index.array[0]).seconds
-#pandas.DataFrame.index(data['temperature']).array
 
 
+#Getting time intervals and plotting the PDF
 rows, col = data['temperature'].shape
-"""
-#range(rows-1)
-hold = pandas.Timedelta(data['temperature'].index.array[1] - data['temperature'].index.array[0]).seconds
-what = type(hold) is str
-print(what)
-"""
 delta = []
 for x in range(rows-1):
     delta.append(pandas.Timedelta(data['temperature'].index.array[x+1] - data['temperature'].index.array[x]).total_seconds())
@@ -128,5 +116,12 @@ print("Mean value of the time interval between two sensor readings is")
 print(mean(delta))
 print("Variance of the time interval is")
 print(variance(delta))
+
+fig2, ax = plt.subplots(figsize=(9,6))
+sns.histplot(delta, stat = 'density', bins = 100)
+sns.kdeplot(data = delta, bw_adjust = 0.2, color = 'r')
+ax.set_ylabel('Propability Density')
+ax.set_xlabel('Time Interval')
+plt.tight_layout() 
 
 plt.show()
