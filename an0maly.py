@@ -69,6 +69,10 @@ if __name__ == "__main__":
     print("Percent of bad data:  ", badcount*100/totalcount,"%")
     print("new temperature median:   ", stat.median(newtemp))
     print("new temperature variance:   ", stat.variance(newtemp))
+    
+    print()
+    print("a persistent change in temperature does not always mean a failed sensor.")
+    print("The 'bad' data could be caused by physical change close to the sensor e.g a person working with a heat source")
 
     avrglab1 = stat.mean(newtemp)
     devlab1 = stat.stdev(newtemp)

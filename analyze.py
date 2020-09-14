@@ -73,18 +73,18 @@ if __name__ == "__main__":
     print("class1:   " ,data['temperature']['class1'].var())
     print("lab1:     " ,data['temperature']['lab1'].var())
     print("office:   " ,data['temperature']['office'].var())
-    #print("Median occupancy for each room\n" + data['occupancy'].median())
-    #print("Variance in occupancy for each rooms\n" + data['occupancy'].var() + "\n\n")
+    print()
+    print("Median occupancy for each room")
+    print("class1:   " , data['occupancy']['class1'].median())
+    print("lab1:     " ,data['occupancy']['lab1'].median())
+    print("office:   " ,data['occupancy']['office'].median())
+    print()
+    print("Variance in occupancy for each rooms")
+    print("class1:   " ,data['occupancy']['class1'].var())
+    print("lab1:     " ,data['occupancy']['lab1'].var())
+    print("office:   " ,data['occupancy']['office'].var())
+    print()
 
-"""
-    for k in data:
-        data[k].plot()
-        time = data[k].index
-        data[k].hist()
-        plt.figure()
-        plt.hist(np.diff(time.values).astype(np.int64) // 1000000000)
-        plt.xlabel("Time (seconds)")
-"""
 
 #one of many failed attempts at plotting PDF
 
@@ -99,7 +99,7 @@ if __name__ == "__main__":
 
 #Creat and plot PDF:
 fig1, axs = plt.subplots(1, 3,figsize=(9,6))
-fig1.suptitle('Propability Density', fontsize=16)
+fig1.suptitle('PDF of Sensor Values in lab1', fontsize=16)
 sns.histplot(np.array(data['temperature']['lab1']), stat = 'density', ax = axs[0], kde = True)
 sns.histplot(np.array(data['occupancy']['lab1']), stat = 'density', discrete = True, ax = axs[1], kde = True)
 sns.histplot(np.array(data['co2']['lab1']), stat = 'density', ax = axs[2], kde = True)
@@ -121,12 +121,16 @@ print("Mean value of the time interval between two sensor readings is")
 print(mean(delta))
 print("Variance of the time interval is")
 print(variance(delta))
+print()
 
 fig2, ax = plt.subplots(figsize=(9,6))
 sns.histplot(delta, stat = 'density', bins = 100)
 sns.kdeplot(data = delta, bw_adjust = 0.2, color = 'r')
 ax.set_ylabel('Propability Density')
 ax.set_xlabel('Time Interval')
+fig2.suptitle('PDF of Time Interval Between Sensor Readings', fontsize = 16)
 plt.tight_layout() 
+print('The time interval plot mimics a plot of exponential decay, the longer the interval the less likely for it to occure')
+print()
 
 plt.show()
