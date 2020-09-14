@@ -87,7 +87,7 @@ if __name__ == "__main__":
 """
 
 #one of many failed attempts at plotting PDF
-"""
+
 #data['temperature']['lab1'].hist(bins=3000, density= True)
 #n, x, _ = plt.hist(data['temperature']['lab1'], bins=np.linspace(-300, 50, 5), 
 #          histtype=u'step', density=True) 
@@ -130,4 +130,3 @@ ax.set_xlabel('Time Interval')
 plt.tight_layout() 
 
 plt.show()
-"""
