@@ -7,9 +7,8 @@ import typing as T
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-from statistics import mean
-from statistics import variance
-from statistics import median
+import statistics as stat
+
 
 
 def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
@@ -48,8 +47,8 @@ if __name__ == "__main__":
 
     deviation = data['temperature']['lab1'].std()
     mean = data['temperature']['lab1'].mean()
-
     rows, col = data['temperature'].shape
+
     newtemp = []
     badcount = 0
     totalcount = 0
@@ -65,8 +64,21 @@ if __name__ == "__main__":
             totalcount += 1 
 
     newtemp = [x for x in newtemp if np.isnan(x) == False]
+    
+    print()
     print("Percent of bad data:  ", badcount*100/totalcount,"%")
-    print("new temperature median:   ", median(newtemp))
-    print("new temperature variance:   ", variance(newtemp))
+    print("new temperature median:   ", stat.median(newtemp))
+    print("new temperature variance:   ", stat.variance(newtemp))
 
-
+    avrglab1 = stat.mean(newtemp)
+    devlab1 = stat.stdev(newtemp)
+    avrgclass1 = data['temperature']['class1'].mean()
+    devclass1 = data['temperature']['class1'].std()
+    avrgoffice = data['temperature']['office'].mean()
+    devoffice = data['temperature']['office'].std()
+    print()
+    print("possible temperature bounds are")
+    print("lab1:    ", avrglab1-3*devlab1,"C\N{DEGREE SIGN} and ", avrglab1+3*devlab1,"C\N{DEGREE SIGN}")
+    print("class1:  ", avrgclass1-3*devclass1,"C\N{DEGREE SIGN} and ", avrgclass1+3*devclass1,"C\N{DEGREE SIGN}")
+    print("office:  ", avrgoffice-3*devlab1,"C\N{DEGREE SIGN} and ", avrgoffice+3*devoffice,"C\N{DEGREE SIGN}")
+    print()
