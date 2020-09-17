@@ -1,0 +1,105 @@
+EC463 Sensor Project
+=======
+
+Team Members: Muayad Al Riyami and Paul Adan
+-----------
+
+In this project, we simulated sensor data using websockets. 
+We simulated data for time, temperature, CO2 levels, and occupancy for 3 different rooms.
+The datapoints were taken at random time intervals to simulate delayed data.
+The simulation also includes incorrect or missing data.
+
+-----------
+
+Below are the delivereables from the tasks (The actual report is at the bottom of this document):
+
+#### TASK 0:
+* setup and run the Python code as described above on your computer
+~~~done!
+
+* What is the greeting string issued by the server to the client upon first connecting?
+~~~The greeting is "ECE Senior Capstone IoT simulator"
+
+
+#### TASK 1:
+* Add Python code to Websockets client that saves the JSON data to a text file as it comes in (message by message)
+~~~done! This file is saved as data.txt
+
+
+####TASK 2:
+* what are the median and variance observed from the temperature data (at least 100 values)  [3 points]
+~~~Median temperature for each room
+class1:    27.001502006135322
+lab1:      21.000668710520632
+office:    23.021393245925694
+~~~Variance in temperature for each rooms
+class1:    12.60596643612097
+lab1:      225.760610326598
+office:    22.107499924664676
+
+* what are the median and variance observed from the occupancy data (at least 100 values)  [3 points]
+~~~Median occupancy for each room
+class1:    19.0
+lab1:      5.0
+office:    2.0
+~~~Variance in occupancy for each rooms
+class1:    18.581095969270777
+lab1:      4.4626752362754365
+office:    1.9835766559769161
+
+* plot the probability distribution function for each sensor type? [6 points]
+~~~If you run our code the PDF is generated
+
+* What is the mean and variance of the *time interval* of the sensor readings? 
+Please plot its probability distribution function. Does it mimic a well-known 
+distribution for connection intervals in large systems? [8 points]
+~~~Mean value of the time interval between two sensor readings is
+1.0061524147084422
+
+
+####TASK 3
+* implement an algorithm that detects anomalies in **temperature** sensor data
+Percent of bad data:   0.08703220191470844 %
+new temperature median:    21.00074819965141
+new temperature variance:    1.911988425989824
+
+* Does a persistent change in temperature always indicate a failed sensor?
+~~~a persistent change in temperature does not always mean a failed sensor.
+The 'bad' data could be caused by physical change close to the sensor e.g a person working with a heat source
+
+* What are possible bounds on temperature for each room type?
+~~~possible temperature bounds are
+lab1:     16.831304051927987 C° and  25.12778422942697 C°
+class1:   16.456768414752247 C° and  37.75969759597883 C°
+office:   18.526636644964682 C° and  36.78046071035202 C°
+
+
+####TASK 4 (Here is the actual report part)
+* how is this simulation reflective of the real world?
+~~~This simulation is reflective of the real world by adding in incorrect data to simulate sensor failure,
+as well as random timing to simulate delays in data collection. This is similar to a real sensor because real sensors
+can fail to report out data on time, report inaccurate data, or simply fail to report out a data reading.
+
+* how is this simulation deficient? What factors does it fail to account for?
+~~~This simulation does not account for scenarios where the sensors become completely unresponsive and stop reporting data,
+or if the sensors become damaged or break and report out data that is consistently inaccurate.
+This simulation also fails to account for data being corrupted and being un-readable by the computer, like if
+the value for temperature in the Office was: ˜e™ÌŒBRò because of an error.
+
+* how is the difficulty of initially using this Python websockets library as compared to a compiled language e.g. [C++ websockets](https://github.com/facundofarias/awesome-websockets#c-1)
+~~~It is probably more difficult to use a language like C++ for this purpose because it a lower level language compared to Python.
+
+* would it be better to have the server poll the sensors, or the sensors reach out to the server when they have data?
+~~~It is probably better to have the sensors reach out to the server or 'push' the data to the server (like we do for Github) because
+when working with hundreds or thousands of sensors, it would put a lot of strain on the server if it had to poll each individual sensor.
+However, with this method, the server would always have to be running or else the sensors would not be able to reach out. 
+
+
+
+
+
+
+
+
+
+
